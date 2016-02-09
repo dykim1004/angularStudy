@@ -20,12 +20,7 @@ public class productController {
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public List<Product> getList(){
 		List<Product> products = new ArrayList<Product>();
-		/*Product product = new Product();
-		product.setName("Product #1");
-		product.setDescription("A product");
-		product.setCategory("Category #1");
-		product.setPrice(new BigDecimal("100"));
-		products.add(product);*/
+		products = (List<Product>) productRepository.findAll();
 		return products;
 	}
 }

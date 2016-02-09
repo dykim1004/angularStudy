@@ -32,5 +32,6 @@ public class App implements CommandLineRunner {
 		productRepository.save(new Product("Product #1", "A product", "Category #1", new BigDecimal("110")));
 		productRepository.save(new Product("Product #1", "A product", "Category #2", new BigDecimal("210")));
 		productRepository.save(new Product("Product #1", "A product", "Category #3", new BigDecimal("202")));
+		
 	}
 }
