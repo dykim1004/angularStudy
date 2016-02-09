@@ -21,11 +21,21 @@ public class Product {
 
 	public Product(){}
 
-	public Product(String name, String description, String category, BigDecimal price){
+	public Product(String prdId, String name, String description, String category, BigDecimal price){
+		this.prdId = prdId;
 		this.name = name;
 		this.description = description;
 		this.category = category;
 		this.price = price;
+	}
+	
+
+	public String getPrdId() {
+		return prdId;
+	}
+
+	public void setPrdId(String prdId) {
+		this.prdId = prdId;
 	}
 
 	/**

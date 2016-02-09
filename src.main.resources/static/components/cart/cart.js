@@ -5,10 +5,10 @@ angular.module("cart", [])
 
     return {
 
-        addProduct: function (id, name, price) {
+        addProduct: function (prdId, name, price) {
             var addedToExistingItem = false;
             for (var i = 0; i < cartData.length; i++) {
-                if (cartData[i].id == id) {
+                if (cartData[i].prdId == prdId) {
                     cartData[i].count++;
                     addedToExistingItem = true;
                     break;
@@ -16,14 +16,14 @@ angular.module("cart", [])
             }
             if (!addedToExistingItem) {
                 cartData.push({
-                    count: 1, id: id, price: price, name: name
+                    count: 1, prdId: prdId, price: price, name: name
                 });
             }
         },
 
-        removeProduct: function (id) {
+        removeProduct: function (prdId) {
             for (var i = 0; i < cartData.length; i++) {
-                if (cartData[i].id == id) {
+                if (cartData[i].prdId == prdId) {
                     cartData.splice(i, 1);
                     break;
                 }

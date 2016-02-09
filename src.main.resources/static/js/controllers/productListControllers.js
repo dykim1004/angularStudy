@@ -32,6 +32,6 @@ angular.module("store")
         }
 
         $scope.addProductToCart = function (product) {
-            cart.addProduct(product.id, product.name, product.price);
+        	cart.addProduct(product.prdId, product.name, product.price);
         }
     });

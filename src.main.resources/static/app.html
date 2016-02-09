@@ -14,6 +14,7 @@
 <script src="js/filters/customFilters.js"></script>
 <script src="js/controllers/productListControllers.js"></script>
 <script src="components/cart/cart.js"></script>
+<script src="js/controllers/checkoutControllers.js"></script>
 </head>
 <body ng-controller="storeCtrl">
 
@@ -24,6 +25,6 @@
 	<div class="alert alert-danger" ng-show="data.error">
 		Error {{data.error.status}}. The product data was not loaded.
 	</div>
-	<ng-include src="'views/productList.html'"></ng-include>
+	<ng-view />
 </body>
 </html>

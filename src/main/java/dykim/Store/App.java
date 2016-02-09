@@ -28,10 +28,10 @@ public class App implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		productRepository.save(new Product("Product #1", "A product", "Category #1", new BigDecimal("100")));
-		productRepository.save(new Product("Product #1", "A product", "Category #1", new BigDecimal("110")));
-		productRepository.save(new Product("Product #1", "A product", "Category #2", new BigDecimal("210")));
-		productRepository.save(new Product("Product #1", "A product", "Category #3", new BigDecimal("202")));
+		productRepository.save(new Product("1","Product #1", "A product", "Category #1", new BigDecimal("100")));
+		productRepository.save(new Product("2","Product #2", "A product", "Category #1", new BigDecimal("110")));
+		productRepository.save(new Product("3","Product #3", "A product", "Category #2", new BigDecimal("210")));
+		productRepository.save(new Product("4","Product #4", "A product", "Category #3", new BigDecimal("202")));
 		
 	}
 }
