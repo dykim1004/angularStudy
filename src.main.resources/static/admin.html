@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="storeAdmin">
+<head>
+	<title>관리자</title>
+	<script src="/webjars/angular/1.5.0-rc.0/angular.min.js"></script>
+	<script src="/webjars/angular-route/1.5.0-rc.0/angular-route.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/dist/css/bootstrap.min.css">
+	<script>
+	 angular.module("storeAdmin", ["ngRoute"])
+	 	.config(function($routeProvider){
+	 		
+	 		$routeProvider.when("/login", {
+	 			templateUrl: "views/adminLogin.html"
+	 		});
+	 		
+	 		$routeProvider.when("/main", {
+	 			templateUrl: "views/adminMain.html"
+	 		});
+	 		
+	 		$routeProvider.otherwise({
+	 			redirectTo: "/login"
+	 		});
+	 	});
+	</script>
+	<script src="js/controllers/adminControllers.js"></script>
+</head>
+<body>
+	<ng-view />
+</body>
+</html>

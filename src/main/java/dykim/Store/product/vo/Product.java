@@ -7,7 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
 	@Id
@@ -18,6 +21,9 @@ public class Product {
 	private String description;
 	private String category;
 	private BigDecimal price;
+	
+	private Integer count;
+	
 
 	public Product(){}
 
@@ -85,6 +91,20 @@ public class Product {
 	 */
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public Integer getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 
