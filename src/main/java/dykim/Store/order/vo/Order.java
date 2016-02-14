@@ -1,6 +1,8 @@
 package dykim.Store.order.vo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,18 +12,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import dykim.Store.product.vo.Product;
-
 @Entity
+@Table(name="store_order")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String orderId;
+	
 	private String name;
 	private String street;
 	private String city;
@@ -39,13 +42,13 @@ public class Order {
 	 *  FetchType.EAGER : 관계된 엔티티정보를 미리 읽음
 	 *  FetchType.LAZY  : 실제요청시 읽
 	 * */
-	@OneToMany(targetEntity=OrderProducts.class, mappedBy="order", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="order", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	private List<OrderProducts> products;
 	
 	public Order(){}
 	
 	public Order(String orderId, String name, String street, String city, 
-			     String state, String zip, String country, boolean giftwrap, List<OrderProducts> products){
+			     String state, String zip, String country, boolean giftwrap){
 		this.orderId = orderId;
 		this.name = name;
 		this.street = street;
@@ -54,7 +57,6 @@ public class Order {
 		this.zip = zip;
 		this.country = country;
 		this.giftwrap = giftwrap;
-		this.products = products;
 	}
 	
 	/**
@@ -169,6 +171,7 @@ public class Order {
 	public void setProducts(List<OrderProducts> products) {
 		this.products = products;
 	}
+	
 	
 	
 }

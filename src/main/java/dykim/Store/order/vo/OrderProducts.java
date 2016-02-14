@@ -18,6 +18,7 @@ public class OrderProducts {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int seq;
 	
+	@Column(name="prdId")
 	private String prdId;
 
 	private String name;
@@ -28,6 +29,17 @@ public class OrderProducts {
 	@ManyToOne(optional=false)
 	@JoinColumn(name="orderId")
 	private Order order;
+	
+	public OrderProducts(){}
+	
+	public OrderProducts(int seq, String prdId, String name, String description, String category, BigDecimal price){
+		this.seq   = seq;
+		this.prdId = prdId;
+		this.name  = name;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+	}
 
 	/**
 	 * @return the seq
