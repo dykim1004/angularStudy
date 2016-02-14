@@ -1,25 +1,23 @@
-package dykim.Store.product.vo;
+package dykim.Store.order.vo;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import dykim.Store.order.vo.Order;
-
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Product {
-
+public class OrderProducts {
+	
 	@Id
+	@Column(name="seq")
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int seq;
+	
 	private String prdId;
 
 	private String name;
@@ -27,23 +25,34 @@ public class Product {
 	private String category;
 	private BigDecimal price;
 	
-	private Integer count;
-	
-	public Product(){}
+	@ManyToOne(optional=false)
+	@JoinColumn(name="orderId")
+	private Order order;
 
-	public Product(String prdId, String name, String description, String category, BigDecimal price){
-		this.prdId = prdId;
-		this.name = name;
-		this.description = description;
-		this.category = category;
-		this.price = price;
+	/**
+	 * @return the seq
+	 */
+	public int getSeq() {
+		return seq;
 	}
-	
 
+	/**
+	 * @param seq the seq to set
+	 */
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	/**
+	 * @return the prdId
+	 */
 	public String getPrdId() {
 		return prdId;
 	}
 
+	/**
+	 * @param prdId the prdId to set
+	 */
 	public void setPrdId(String prdId) {
 		this.prdId = prdId;
 	}
@@ -54,42 +63,49 @@ public class Product {
 	public String getName() {
 		return name;
 	}
+
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
+
 	/**
 	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	/**
 	 * @return the category
 	 */
 	public String getCategory() {
 		return category;
 	}
+
 	/**
 	 * @param category the category to set
 	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	/**
 	 * @return the price
 	 */
 	public BigDecimal getPrice() {
 		return price;
 	}
+
 	/**
 	 * @param price the price to set
 	 */
@@ -98,18 +114,19 @@ public class Product {
 	}
 
 	/**
-	 * @return the count
+	 * @return the order
 	 */
-	public Integer getCount() {
-		return count;
+	public Order getOrder() {
+		return order;
 	}
 
 	/**
-	 * @param count the count to set
+	 * @param order the order to set
 	 */
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
-
-
+	
+	
+	
 }

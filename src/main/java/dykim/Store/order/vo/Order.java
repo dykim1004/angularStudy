@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,7 +21,7 @@ public class Order {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer orderId;
+	private String orderId;
 	private String name;
 	private String street;
 	private String city;
@@ -28,8 +29,33 @@ public class Order {
 	private String zip;
 	private String country;
 	private boolean giftwrap;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Product> products;
+	
+	/** 
+	 *  targetEntity : 관계를 맺을 엔티티를 정
+	 *  cascade      : 현 Entity의 변경에 대해 관계를 맺은 Entity도 변경 전략을 결정
+	 *  FetchType    : 관계 엔티티 데이터 읽기 전략 
+	 *  mappedBy     : 양방향 관계 설정시 관계의 주체가 되는 쪽에서 정의
+	 *  
+	 *  FetchType.EAGER : 관계된 엔티티정보를 미리 읽음
+	 *  FetchType.LAZY  : 실제요청시 읽
+	 * */
+	@OneToMany(targetEntity=OrderProducts.class, mappedBy="order", cascade = CascadeType.ALL)
+	private List<OrderProducts> products;
+	
+	public Order(){}
+	
+	public Order(String orderId, String name, String street, String city, 
+			     String state, String zip, String country, boolean giftwrap, List<OrderProducts> products){
+		this.orderId = orderId;
+		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
+		this.giftwrap = giftwrap;
+		this.products = products;
+	}
 	
 	/**
 	 * @return the name
@@ -115,30 +141,34 @@ public class Order {
 	public void setGiftwrap(boolean giftwrap) {
 		this.giftwrap = giftwrap;
 	}
-
+	
 	/**
 	 * @return the orderId
 	 */
-	public Integer getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
+
 	/**
 	 * @param orderId the orderId to set
 	 */
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
 	/**
 	 * @return the products
 	 */
-	public List<Product> getProducts() {
+	public List<OrderProducts> getProducts() {
 		return products;
 	}
+
 	/**
 	 * @param products the products to set
 	 */
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<OrderProducts> products) {
 		this.products = products;
 	}
+	
 	
 }

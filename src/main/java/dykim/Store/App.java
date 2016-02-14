@@ -1,6 +1,8 @@
 package dykim.Store;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 
+import dykim.Store.order.repository.OrderRepository;
+import dykim.Store.order.vo.Order;
 import dykim.Store.product.repository.ProductRepository;
 import dykim.Store.product.vo.Product;
 
@@ -21,6 +25,9 @@ public class App implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
@@ -28,10 +35,39 @@ public class App implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		productRepository.save(new Product("1","Product #1", "A product", "Category #1", new BigDecimal("100")));
-		productRepository.save(new Product("2","Product #2", "A product", "Category #1", new BigDecimal("110")));
-		productRepository.save(new Product("3","Product #3", "A product", "Category #2", new BigDecimal("210")));
-		productRepository.save(new Product("4","Product #4", "A product", "Category #3", new BigDecimal("202")));
+		initData();
+	}
+	
+	// 초기 데이터 등 
+	private void initData(){
+		//제품 등록
+		Product product1 = new Product("1","Product #1", "A product", "Category #1", new BigDecimal("100"));
+		Product product2 = new Product("2","Product #2", "A product", "Category #1", new BigDecimal("110"));
+		Product product3 = new Product("3","Product #3", "A product", "Category #2", new BigDecimal("210"));
+		Product product4 = new Product("4","Product #4", "A product", "Category #3", new BigDecimal("202"));
+		
+		productRepository.save(product1);
+		productRepository.save(product2);
+		productRepository.save(product3);
+		productRepository.save(product4);
+		
+		System.out.println("제품등록!");
+		
+		//주문 등록
+		
+//		List<Product> prdLst = new ArrayList<Product>();
+//		prdLst.add(product1);
+//		prdLst.add(product2);
+//		prdLst.add(product3);
+//		
+//		Order order1 = new Order("1", "Adam Freeman", "street", "London","state", "000-000", "country", false, null);
+//		Order order2 = new Order("2", "Joe Smith", "street", "New York","state", "000-000", "country", false, null);
+//		Order order3 = new Order("3", "Jane Doe", "street", "Paris","state", "000-000", "country", false, null);
+//		orderRepository.save(order1);
+//		orderRepository.save(order2);
+//		orderRepository.save(order3);
 		
 	}
+	
+	
 }
