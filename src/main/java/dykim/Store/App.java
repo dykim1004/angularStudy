@@ -73,16 +73,16 @@ public class App implements CommandLineRunner {
 		orderRepository.save(order3);
 		
 		OrderProducts orderProduct1 = new OrderProducts(1,"1","Product #1", "A product", "Category #1", new BigDecimal("100"));
-		OrderProducts orderProduct2 = new OrderProducts(2,"2","Product #2", "A product", "Category #1", new BigDecimal("110"));
-		OrderProducts orderProduct3 = new OrderProducts(3,"3","Product #3", "A product", "Category #2", new BigDecimal("210"));
+		//OrderProducts orderProduct2 = new OrderProducts(2,"2","Product #2", "A product", "Category #1", new BigDecimal("110"));
+		//OrderProducts orderProduct3 = new OrderProducts(3,"3","Product #3", "A product", "Category #2", new BigDecimal("210"));
 		
 		orderProduct1.setOrder(order1);
-		orderProduct2.setOrder(order1);
-		orderProduct3.setOrder(order1);
+		//orderProduct2.setOrder(order1);
+		//orderProduct3.setOrder(order1);
 		
 		orderProductsRepository.save(orderProduct1);
-		orderProductsRepository.save(orderProduct2);
-		orderProductsRepository.save(orderProduct3);
+		//orderProductsRepository.save(orderProduct2);
+		//orderProductsRepository.save(orderProduct3);
 		
 		
 	}

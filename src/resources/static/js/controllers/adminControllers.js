@@ -29,30 +29,29 @@ angular.module("storeAdmin")
             ? "/views/adminProducts.html" : "/views/adminOrders.html";
     };
 })
-.controller("ordersCtrl", function($scope, $http, ordersUrl){
-	
-	$http.get(ordersUrl)
-		.success(function(data){
-			$scope.orders = data;
-		})
-		.error(function (error){
-			$scope.error = error;
-		});
-	
-	$scope.selectedOrder;
-	
-	// 주문상세정
-	$scope.selectOrder = function(order){
-		$scope.selectedOrder = order;
-	}
-	
-	// 주문한 상품의 전체 가
-	$scope.calcTotal = function(order){
-		var total = 0;
-		for(var i=0; i < order.products.length; i++){
-			total += orders.products[i].count * order.products[i].price;
-		}
-		return total;
-	}
-	
+.controller("ordersCtrl", function ($scope, $http, ordersUrl) {
+
+    $http.get(ordersUrl, { withCredentials: true })
+        .success(function (data) {
+            $scope.orders = data;
+        })
+        .error(function (error) {
+        	alert(JSON.stringify(error));
+            $scope.error = error;
+        });
+
+    $scope.selectedOrder;
+
+    $scope.selectOrder = function (order) {
+        $scope.selectedOrder = order;
+    };
+
+    $scope.calcTotal = function (order) {
+        var total = 0;
+        for (var i = 0; i < order.products.length; i++) {
+            total +=
+                order.products[i].count * order.products[i].price;
+        }
+        return total;
+    }
 });

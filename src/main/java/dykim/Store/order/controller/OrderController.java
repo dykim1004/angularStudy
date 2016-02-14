@@ -18,9 +18,11 @@ public class OrderController {
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	public List<Order> getOrders(){
-		List<Order> list = new ArrayList<Order>();
-		System.out.println("11");
-		return list;
+		System.out.println("S :");
+		List<Order> list = (List<Order>) orderRepository.findAll();
+		System.out.println("E :"+list.size());
+		List<Order> list2 = new ArrayList<Order>();
+		return list ;
 	}
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.POST)
