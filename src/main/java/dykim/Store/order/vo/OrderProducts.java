@@ -29,7 +29,7 @@ public class OrderProducts {
 	private BigDecimal price;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="order_id")
+	@JoinColumn(name="order_Id")
 	private Order order;
 	
 	public OrderProducts(){}
@@ -128,19 +128,10 @@ public class OrderProducts {
 	}
 
 	/**
-	 * @return the order
-	 */
-	public Order getOrder() {
-		return order;
-	}
-
-	/**
 	 * @param order the order to set
 	 */
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	
-	
 	
 }

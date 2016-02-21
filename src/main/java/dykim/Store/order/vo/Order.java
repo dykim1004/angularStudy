@@ -39,7 +39,7 @@ public class Order {
 	 *  FetchType.EAGER : 관계된 엔티티정보를 미리 읽음
 	 *  FetchType.LAZY  : 실제요청시 읽
 	 * */
-	@OneToMany(mappedBy="order", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+	@OneToMany(mappedBy="order", cascade = CascadeType.ALL) 
 	private List<OrderProducts> products;
 	
 	public Order(){}

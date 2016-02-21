@@ -68,17 +68,26 @@ public class App implements CommandLineRunner {
 		Order order1 = new Order("1", "Adam Freeman", "street", "London","state", "000-000", "country", false);
 		Order order2 = new Order("2", "Joe Smith", "street", "New York","state", "000-000", "country", false);
 		Order order3 = new Order("3", "Jane Doe", "street", "Paris","state", "000-000", "country", false);
+		
+		List<OrderProducts> orderProductList = new ArrayList<OrderProducts>();
+		
+		OrderProducts orderProduct1 = new OrderProducts(1,"1","Product #1", "A product", "Category #1", new BigDecimal("100"));
+		OrderProducts orderProduct2 = new OrderProducts(2,"2","Product #2", "A product", "Category #1", new BigDecimal("110"));
+		OrderProducts orderProduct3 = new OrderProducts(3,"3","Product #3", "A product", "Category #2", new BigDecimal("210"));
+		orderProductList.add(orderProduct1);
+		orderProductList.add(orderProduct2);
+		orderProductList.add(orderProduct3);
+		
+		order1.setProducts(orderProductList);
+		
 		orderRepository.save(order1);
 		orderRepository.save(order2);
 		orderRepository.save(order3);
 		
-		OrderProducts orderProduct1 = new OrderProducts(1,"1","Product #1", "A product", "Category #1", new BigDecimal("100"));
-		//OrderProducts orderProduct2 = new OrderProducts(2,"2","Product #2", "A product", "Category #1", new BigDecimal("110"));
-		//OrderProducts orderProduct3 = new OrderProducts(3,"3","Product #3", "A product", "Category #2", new BigDecimal("210"));
 		
 		orderProduct1.setOrder(order1);
-		//orderProduct2.setOrder(order1);
-		//orderProduct3.setOrder(order1);
+		orderProduct2.setOrder(order1);
+		orderProduct3.setOrder(order1);
 		
 		orderProductsRepository.save(orderProduct1);
 		//orderProductsRepository.save(orderProduct2);
