@@ -36,8 +36,7 @@ angular.module("storeAdmin")
             $scope.orders = data;
         })
         .error(function (error) {
-        	alert(JSON.stringify(error));
-            $scope.error = error;
+        	$scope.error = error;
         });
 
     $scope.selectedOrder;
