@@ -26,6 +26,7 @@ public class OrderProducts {
 	private String name;
 	private String description;
 	private String category;
+	private Integer count;
 	private BigDecimal price;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -34,13 +35,14 @@ public class OrderProducts {
 	
 	public OrderProducts(){}
 	
-	public OrderProducts(int seq, String prdId, String name, String description, String category, BigDecimal price){
+	public OrderProducts(int seq, String prdId, String name, String description, String category, BigDecimal price, Integer count){
 		this.seq   = seq;
 		this.prdId = prdId;
 		this.name  = name;
 		this.description = description;
 		this.category = category;
 		this.price = price;
+		this.count = count;
 	}
 
 	/**
@@ -132,6 +134,20 @@ public class OrderProducts {
 	 */
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public Integer getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	
 }
