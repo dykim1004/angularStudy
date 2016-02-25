@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,4 +25,25 @@ public class productController {
 		products = (List<Product>) productRepository.findAll();
 		return products;
 	}
+	
+	@RequestMapping(value="/products/{prdId}", method= RequestMethod.GET )
+	public Product getProduct(@PathVariable Long prdId ){
+		return productRepository.findOne(prdId);
+	}
+	
+	@RequestMapping(value="/products", method= RequestMethod.POST )
+	public void createProduct(@RequestBody Product product){
+		productRepository.save(product);
+	}
+	
+	@RequestMapping(value="/products/{prdId}", method= RequestMethod.POST )
+	public void createProduct(@RequestBody Product product, @PathVariable Long prdId){
+		productRepository.save(product);
+	}
+	
+	@RequestMapping(value="/products/{prdId}", method= RequestMethod.DELETE )
+	public void deleteProduct(Product product ){
+		productRepository.delete(product);
+	}
+	
 }

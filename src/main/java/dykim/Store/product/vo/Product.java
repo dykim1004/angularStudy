@@ -106,5 +106,14 @@ public class Product {
 		this.count = count;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Product [prdId=" + prdId + ", name=" + name + ", description=" + description + ", category=" + category
+				+ ", price=" + price + ", count=" + count + "]";
+	}
+
 
 }
